@@ -1,0 +1,234 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sinh viên</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header">
+        <h1>Quản lý sinh viên</h1>
+    </div>
+
+    <div class="container">
+        <!-- Mobile tabs -->
+        <div class="mobile-tabs">
+            <button class="tab-button active" data-tab="form">Thêm sinh viên</button>
+            <button class="tab-button" data-tab="list">Danh sách</button>
+        </div>
+
+        <div class="main-content">
+            <!-- Form section -->
+            <div class="form-section">
+                <div class="section-title">Thêm sinh viên mới</div>
+                
+                <form id="studentForm">
+                    <div class="form-group">
+                        <label for="studentId">Mã sinh viên:</label>
+                        <input type="text" id="studentId" name="studentId" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fullName">Họ và tên:</label>
+                        <input type="text" id="fullName" name="fullName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" name="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gender">Giới tính:</label>
+                        <select id="gender" name="gender" required>
+                            <option value="">-- Chọn giới tính --</option>
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birthDate">Ngày sinh:</label>
+                        <input type="date" id="birthDate" name="birthDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="notes">Ghi chú:</label>
+                        <textarea id="notes" name="notes" rows="3"></textarea>
+                    </div>
+                    
+                    <button type="submit" class="btn">Thêm sinh viên</button>
+                </form>
+            </div>
+
+            <!-- Table section -->
+            <div class="table-section">
+                <div class="table-title">Danh sách sinh viên</div>
+                
+                <!-- Desktop table -->
+                <div class="table-container">
+                    <table>
+                        <thead>
+                            <tr>
+                                <th>STT</th>
+                                <th>Mã SV</th>
+                                <th>Họ tên</th>
+                                <th>Email</th>
+                                <th>Giới tính</th>
+                                <th>Ngày sinh</th>
+                                <th>Ghi chú</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                            <tr>
+                                <td>1</td>
+                                <td>SV01</td>
+                                <td>Trần Hà Trang</td>
+                                <td>tranhatrang@gmail.com</td>
+                                <td>Nữ</td>
+                                <td>15/03/2002</td>
+                                <td>Sinh viên giỏi</td>
+                            </tr>
+                            <tr>
+                                <td>2</td>
+                                <td>SV02</td>
+                                <td>Nguyễn Văn Chung</td>
+                                <td>nguyenvanchung@gmail.com</td>
+                                <td>Nam</td>
+                                <td>22/07/2001</td>
+                                <td>Sinh viên khá</td>
+                            </tr>
+                            <tr>
+                                <td>3</td>
+                                <td>SV03</td>
+                                <td>Trịnh Đức Lương</td>
+                                <td>trinhducluong@gmail.com</td>
+                                <td>Nam</td>
+                                <td>10/12/2004</td>
+                                <td>Chủ tịch HSV</td>
+                            </tr>
+                            <tr>
+                                <td>4</td>
+                                <td>SV04</td>
+                                <td>Phạm Thị Mai</td>
+                                <td>phamthimai@gmail.com</td>
+                                <td>Nữ</td>
+                                <td>05/09/2003</td>
+                                <td>Sinh viên xuất sắc</td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+                <!-- Mobile cards -->
+                <div class="student-cards">
+                    <div class="student-card">
+                        <div class="card-header">
+                            <span class="student-id">SV01</span>
+                            <div class="student-name">Trần Hà Trang</div>
+                        </div>
+                        <div class="card-info">
+                            <div class="info-row"><span class="info-label">Email:</span> tranhatrang@gmail.com</div>
+                            <div class="info-row"><span class="info-label">Giới tính:</span> Nữ</div>
+                            <div class="info-row"><span class="info-label">Ngày sinh:</span> 15/03/2002</div>
+                            <div class="info-row"><span class="info-label">Ghi chú:</span> Sinh viên khá </div>
+                        </div>
+                    </div>
+
+                    <div class="student-card">
+                        <div class="card-header">
+                            <span class="student-id">SV02</span>
+                            <div class="student-name">Nguyễn Văn Chung</div>
+                        </div>
+                        <div class="card-info">
+                            <div class="info-row"><span class="info-label">Email:</span> nguyenvanchung@gmail.com</div>
+                            <div class="info-row"><span class="info-label">Giới tính:</span> Nam</div>
+                            <div class="info-row"><span class="info-label">Ngày sinh:</span> 22/07/2001</div>
+                            <div class="info-row"><span class="info-label">Ghi chú:</span> Sinh viên giỏi </div>
+                        </div>
+                    </div>
+
+                    <div class="student-card">
+                        <div class="card-header">
+                            <span class="student-id">SV03</span>
+                            <div class="student-name">Trịnh Đức Lương</div>
+                        </div>
+                        <div class="card-info">
+                            <div class="info-row"><span class="info-label">Email:</span> trinhducluong@gmail.com</div>
+                            <div class="info-row"><span class="info-label">Giới tính:</span> Nam</div>
+                            <div class="info-row"><span class="info-label">Ngày sinh:</span> 10/12/2004</div>
+                            <div class="info-row"><span class="info-label">Ghi chú:</span> Chủ tịch HSV</div>
+                        </div>
+                    </div>
+
+                    <div class="student-card">
+                        <div class="card-header">
+                            <span class="student-id">SV04</span>
+                            <div class="student-name">Phạm Thị Mai</div>
+                        </div>
+                        <div class="card-info">
+                            <div class="info-row"><span class="info-label">Email:</span> phamthimai@gmail.com</div>
+                            <div class="info-row"><span class="info-label">Giới tính:</span> Nữ</div>
+                            <div class="info-row"><span class="info-label">Ngày sinh:</span> 05/09/2003</div>
+                            <div class="info-row"><span class="info-label">Ghi chú:</span> Sinh viên xuất sắc</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <script>
+        // Mobile tab functionality
+        const tabButtons = document.querySelectorAll('.tab-button');
+        const formSection = document.querySelector('.form-section');
+        const tableSection = document.querySelector('.table-section');
+
+        tabButtons.forEach(button => {
+            button.addEventListener('click', function() {
+                // Remove active class from all buttons
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                // Add active class to clicked button
+                this.classList.add('active');
+
+                const tab = this.dataset.tab;
+                
+                if (tab === 'form') {
+                    formSection.classList.remove('hidden');
+                    tableSection.classList.add('hidden');
+                } else {
+                    formSection.classList.add('hidden');
+                    tableSection.classList.remove('hidden');
+                }
+            });
+        });
+
+        // Form submission
+        document.getElementById('studentForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            alert('Sinh viên đã được thêm thành công!');
+            this.reset();
+            
+            // Switch to list view on mobile after adding
+            if (window.innerWidth <= 768) {
+                document.querySelector('[data-tab="list"]').click();
+            }
+        });
+
+        // Handle window resize
+        window.addEventListener('resize', function() {
+            if (window.innerWidth > 768) {
+                formSection.classList.remove('hidden');
+                tableSection.classList.remove('hidden');
+            }
+        });
+
+        // Initial setup for mobile
+        if (window.innerWidth <= 768) {
+            tableSection.classList.add('hidden');
+        }
+    </script>
+</body>
+</html>
