@@ -17,7 +17,6 @@
             color: #333;
         }
 
-        /* Header */
         .header {
             background-color: #007bff;
             color: white;
@@ -25,48 +24,32 @@
             text-align: center;
         }
 
-        .header h1 {
-            font-size: 1.5rem;
-        }
-
-        /* Container */
         .container {
             max-width: 1200px;
             margin: 0 auto;
             padding: 1rem;
         }
 
-        /* Mobile tabs */
-        .mobile-tabs {
-            display: none;
-            background: white;
+        .notification {
+            background: #28a745;
+            color: white;
+            padding: 1rem;
             margin-bottom: 1rem;
             border-radius: 5px;
-            overflow: hidden;
-            box-shadow: 0 2px 5px rgba(0,0,0,0.1);
-        }
-
-        .tab-button {
-            width: 50%;
-            padding: 1rem;
-            border: none;
-            background: #f8f9fa;
-            cursor: pointer;
+            text-align: center;
             font-weight: bold;
+            display: none;
         }
 
-        .tab-button.active {
-            background: #007bff;
-            color: white;
+        .notification.show {
+            display: block;
         }
 
-        /* Main layout */
         .main-content {
             display: flex;
             gap: 2rem;
         }
 
-        /* Form section */
         .form-section {
             flex: 1;
             background: white;
@@ -102,11 +85,6 @@
             font-size: 1rem;
         }
 
-        input:focus, select:focus, textarea:focus {
-            outline: none;
-            border-color: #007bff;
-        }
-
         .btn {
             background: #007bff;
             color: white;
@@ -122,7 +100,16 @@
             background: #0056b3;
         }
 
-        /* Table section */
+        .btn-delete {
+            background: #dc3545;
+            color: white;
+            padding: 0.25rem 0.5rem;
+            border: none;
+            border-radius: 3px;
+            cursor: pointer;
+            font-size: 0.8rem;
+        }
+
         .table-section {
             flex: 2;
             background: white;
@@ -136,10 +123,6 @@
             color: white;
             padding: 0.75rem 1.5rem;
             font-weight: bold;
-        }
-
-        .table-container {
-            overflow-x: auto;
         }
 
         table {
@@ -161,135 +144,39 @@
         tr:hover {
             background: #f8f9fa;
         }
-
-        /* Mobile card layout */
-        .student-cards {
-            display: none;
-            padding: 1rem;
-        }
-
-        .student-card {
-            background: white;
-            border: 1px solid #ddd;
-            border-radius: 5px;
-            padding: 1rem;
-            margin-bottom: 1rem;
-        }
-
-        .card-header {
-            border-bottom: 1px solid #eee;
-            padding-bottom: 0.5rem;
-            margin-bottom: 0.5rem;
-        }
-
-        .student-id {
-            background: #007bff;
-            color: white;
-            padding: 0.25rem 0.5rem;
-            border-radius: 3px;
-            font-size: 0.8rem;
-            display: inline-block;
-        }
-
-        .student-name {
-            font-weight: bold;
-            font-size: 1.1rem;
-            margin: 0.5rem 0;
-        }
-
-        .card-info {
-            font-size: 0.9rem;
-        }
-
-        .info-row {
-            margin-bottom: 0.25rem;
-        }
-
-        .info-label {
-            font-weight: bold;
-            color: #666;
-        }
-
-        /* Responsive */
-        @media (max-width: 768px) {
-            .container {
-                padding: 0.5rem;
-            }
-
-            .mobile-tabs {
-                display: flex;
-            }
-
-            .main-content {
-                flex-direction: column;
-                gap: 0;
-            }
-
-            .form-section, .table-section {
-                margin-bottom: 1rem;
-            }
-
-            .table-container {
-                display: none;
-            }
-
-            .student-cards {
-                display: block;
-            }
-
-            .form-section.hidden,
-            .table-section.hidden {
-                display: none;
-            }
-        }
-
-        @media (min-width: 769px) {
-            .student-cards {
-                display: none !important;
-            }
-            .table-container {
-                display: block !important;
-            }
-        }
     </style>
 </head>
 <body>
-    <!-- Header -->
     <div class="header">
         <h1>Quản lý sinh viên</h1>
     </div>
 
     <div class="container">
-        <!-- Mobile tabs -->
-        <div class="mobile-tabs">
-            <button class="tab-button active" data-tab="form">Thêm sinh viên</button>
-            <button class="tab-button" data-tab="list">Danh sách</button>
-        </div>
+        <div id="thongBao" class="notification"></div>
 
         <div class="main-content">
-            <!-- Form section -->
             <div class="form-section">
                 <div class="section-title">Thêm sinh viên mới</div>
                 
                 <form id="studentForm">
                     <div class="form-group">
                         <label for="studentId">Mã sinh viên:</label>
-                        <input type="text" id="studentId" name="studentId" required>
+                        <input type="text" id="studentId" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="fullName">Họ và tên:</label>
-                        <input type="text" id="fullName" name="fullName" required>
+                        <input type="text" id="fullName" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="email">Email:</label>
-                        <input type="email" id="email" name="email" required>
+                        <input type="email" id="email" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="gender">Giới tính:</label>
-                        <select id="gender" name="gender" required>
+                        <select id="gender" required>
                             <option value="">-- Chọn giới tính --</option>
                             <option value="Nam">Nam</option>
                             <option value="Nữ">Nữ</option>
@@ -298,184 +185,121 @@
                     
                     <div class="form-group">
                         <label for="birthDate">Ngày sinh:</label>
-                        <input type="date" id="birthDate" name="birthDate" required>
+                        <input type="date" id="birthDate" required>
                     </div>
                     
                     <div class="form-group">
                         <label for="notes">Ghi chú:</label>
-                        <textarea id="notes" name="notes" rows="3"></textarea>
+                        <textarea id="notes" rows="3"></textarea>
                     </div>
                     
-                    <button type="submit" class="btn">Thêm sinh viên</button>
+                    <button type="button" id="btnThem" class="btn" onclick="themSinhVien()">Thêm sinh viên</button>
                 </form>
             </div>
 
-            <!-- Table section -->
             <div class="table-section">
                 <div class="table-title">Danh sách sinh viên</div>
                 
-                <!-- Desktop table -->
-                <div class="table-container">
-                    <table>
-                        <thead>
-                            <tr>
-                                <th>STT</th>
-                                <th>Mã SV</th>
-                                <th>Họ tên</th>
-                                <th>Email</th>
-                                <th>Giới tính</th>
-                                <th>Ngày sinh</th>
-                                <th>Ghi chú</th>
-                            </tr>
-                        </thead>
-                        <tbody>
-                            <tr>
-                                <td>1</td>
-                                <td>SV01</td>
-                                <td>Trần Hà Trang</td>
-                                <td>tranhatrang@gmail.com</td>
-                                <td>Nữ</td>
-                                <td>15/03/2002</td>
-                                <td>Sinh viên giỏi</td>
-                            </tr>
-                            <tr>
-                                <td>2</td>
-                                <td>SV02</td>
-                                <td>Nguyễn Văn Chung</td>
-                                <td>nguyenvanchung@gmail.com</td>
-                                <td>Nam</td>
-                                <td>22/07/2001</td>
-                                <td>Sinh viên khá</td>
-                            </tr>
-                            <tr>
-                                <td>3</td>
-                                <td>SV03</td>
-                                <td>Trịnh Đức Lương</td>
-                                <td>trinhducluong@gmail.com</td>
-                                <td>Nam</td>
-                                <td>10/12/2004</td>
-                                <td>Chủ tịch HSV</td>
-                            </tr>
-                            <tr>
-                                <td>4</td>
-                                <td>SV04</td>
-                                <td>Phạm Thị Mai</td>
-                                <td>phamthimai@gmail.com</td>
-                                <td>Nữ</td>
-                                <td>05/09/2003</td>
-                                <td>Sinh viên xuất sắc</td>
-                            </tr>
-                        </tbody>
-                    </table>
-                </div>
-
-                <!-- Mobile cards -->
-                <div class="student-cards">
-                    <div class="student-card">
-                        <div class="card-header">
-                            <span class="student-id">SV01</span>
-                            <div class="student-name">Trần Hà Trang</div>
-                        </div>
-                        <div class="card-info">
-                            <div class="info-row"><span class="info-label">Email:</span> tranhatrang@gmail.com</div>
-                            <div class="info-row"><span class="info-label">Giới tính:</span> Nữ</div>
-                            <div class="info-row"><span class="info-label">Ngày sinh:</span> 15/03/2002</div>
-                            <div class="info-row"><span class="info-label">Ghi chú:</span> Sinh viên khá </div>
-                        </div>
-                    </div>
-
-                    <div class="student-card">
-                        <div class="card-header">
-                            <span class="student-id">SV02</span>
-                            <div class="student-name">Nguyễn Văn Chung</div>
-                        </div>
-                        <div class="card-info">
-                            <div class="info-row"><span class="info-label">Email:</span> nguyenvanchung@gmail.com</div>
-                            <div class="info-row"><span class="info-label">Giới tính:</span> Nam</div>
-                            <div class="info-row"><span class="info-label">Ngày sinh:</span> 22/07/2001</div>
-                            <div class="info-row"><span class="info-label">Ghi chú:</span> Sinh viên giỏi </div>
-                        </div>
-                    </div>
-
-                    <div class="student-card">
-                        <div class="card-header">
-                            <span class="student-id">SV03</span>
-                            <div class="student-name">Trịnh Đức Lương</div>
-                        </div>
-                        <div class="card-info">
-                            <div class="info-row"><span class="info-label">Email:</span> trinhducluong@gmail.com</div>
-                            <div class="info-row"><span class="info-label">Giới tính:</span> Nam</div>
-                            <div class="info-row"><span class="info-label">Ngày sinh:</span> 10/12/2004</div>
-                            <div class="info-row"><span class="info-label">Ghi chú:</span> Chủ tịch HSV</div>
-                        </div>
-                    </div>
-
-                    <div class="student-card">
-                        <div class="card-header">
-                            <span class="student-id">SV04</span>
-                            <div class="student-name">Phạm Thị Mai</div>
-                        </div>
-                        <div class="card-info">
-                            <div class="info-row"><span class="info-label">Email:</span> phamthimai@gmail.com</div>
-                            <div class="info-row"><span class="info-label">Giới tính:</span> Nữ</div>
-                            <div class="info-row"><span class="info-label">Ngày sinh:</span> 05/09/2003</div>
-                            <div class="info-row"><span class="info-label">Ghi chú:</span> Sinh viên xuất sắc</div>
-                        </div>
-                    </div>
-                </div>
+                <table id="bangSinhVien">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã SV</th>
+                            <th>Họ tên</th>
+                            <th>Email</th>
+                            <th>Giới tính</th>
+                            <th>Ngày sinh</th>
+                            <th>Ghi chú</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>SV01</td>
+                            <td>Trần Hà Trang</td>
+                            <td>tranhatrang@gmail.com</td>
+                            <td>Nữ</td>
+                            <td>15/03/2002</td>
+                            <td>Sinh viên giỏi</td>
+                            <td><button class="btn-delete" onclick="xoaDong(this)">Xóa</button></td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>SV02</td>
+                            <td>Nguyễn Văn Chung</td>
+                            <td>nguyenvanchung@gmail.com</td>
+                            <td>Nam</td>
+                            <td>22/07/2001</td>
+                            <td>Sinh viên khá</td>
+                            <td><button class="btn-delete" onclick="xoaDong(this)">Xóa</button></td>
+                        </tr>
+                    </tbody>
+                </table>
             </div>
         </div>
     </div>
 
     <script>
-        // Mobile tab functionality
-        const tabButtons = document.querySelectorAll('.tab-button');
-        const formSection = document.querySelector('.form-section');
-        const tableSection = document.querySelector('.table-section');
-
-        tabButtons.forEach(button => {
-            button.addEventListener('click', function() {
-                // Remove active class from all buttons
-                tabButtons.forEach(btn => btn.classList.remove('active'));
-                // Add active class to clicked button
-                this.classList.add('active');
-
-                const tab = this.dataset.tab;
-                
-                if (tab === 'form') {
-                    formSection.classList.remove('hidden');
-                    tableSection.classList.add('hidden');
-                } else {
-                    formSection.classList.add('hidden');
-                    tableSection.classList.remove('hidden');
-                }
-            });
-        });
-
-        // Form submission
-        document.getElementById('studentForm').addEventListener('submit', function(e) {
-            e.preventDefault();
-            alert('Sinh viên đã được thêm thành công!');
-            this.reset();
+        function themSinhVien() {
+            alert("Đã nhấn nút Thêm");
             
-            // Switch to list view on mobile after adding
-            if (window.innerWidth <= 768) {
-                document.querySelector('[data-tab="list"]').click();
+            const maSV = document.getElementById("studentId").value;
+            const hoTen = document.getElementById("fullName").value;
+            const email = document.getElementById("email").value;
+            const gioiTinh = document.getElementById("gender").value;
+            const ngaySinh = document.getElementById("birthDate").value;
+            const ghiChu = document.getElementById("notes").value;
+            
+            if (!maSV || !hoTen || !email || !gioiTinh || !ngaySinh) {
+                alert("Vui lòng điền đầy đủ thông tin!");
+                return;
             }
-        });
 
-        // Handle window resize
-        window.addEventListener('resize', function() {
-            if (window.innerWidth > 768) {
-                formSection.classList.remove('hidden');
-                tableSection.classList.remove('hidden');
-            }
-        });
+            let table = document.getElementById("bangSinhVien").getElementsByTagName("tbody")[0];
+            let newRow = table.insertRow();
+            let stt = table.rows.length;
+            const dateFormatted = new Date(ngaySinh).toLocaleDateString('vi-VN');
+            
+            newRow.insertCell(0).innerText = stt;
+            newRow.insertCell(1).innerText = maSV;
+            newRow.insertCell(2).innerText = hoTen;
+            newRow.insertCell(3).innerText = email;
+            newRow.insertCell(4).innerText = gioiTinh;
+            newRow.insertCell(5).innerText = dateFormatted;
+            newRow.insertCell(6).innerText = ghiChu;
+            newRow.insertCell(7).innerHTML = `<button class="btn-delete" onclick="xoaDong(this)">Xóa</button>`;
 
-        // Initial setup for mobile
-        if (window.innerWidth <= 768) {
-            tableSection.classList.add('hidden');
+            document.getElementById("thongBao").innerText = "Thêm sinh viên thành công!";
+            document.getElementById("thongBao").classList.add("show");
+            
+            setTimeout(() => {
+                document.getElementById("thongBao").innerText = "";
+                document.getElementById("thongBao").classList.remove("show");
+            }, 3000);
+
+            document.getElementById("studentForm").reset();
         }
+
+        function xoaDong(button) {
+            if (confirm("Bạn có chắc chắn muốn xóa sinh viên này?")) {
+                const row = button.parentNode.parentNode;
+                row.parentNode.removeChild(row);
+                capNhatSTT();
+            }
+        }
+
+        function capNhatSTT() {
+            const tbody = document.getElementById("bangSinhVien").getElementsByTagName("tbody")[0];
+            const rows = tbody.getElementsByTagName("tr");
+            for (let i = 0; i < rows.length; i++) {
+                rows[i].cells[0].innerText = i + 1;
+            }
+        }
+
+        document.getElementById("btnThem").addEventListener("click", function () {
+            alert("Đã nhấn nút Thêm");
+        });
     </script>
 </body>
 </html>
