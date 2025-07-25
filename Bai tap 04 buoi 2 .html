@@ -1,0 +1,270 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Employee Information Form</title>
+</head>
+<body>
+    <div>
+        <form id="employeeForm">
+            <fieldset>
+                <legend><b>Basic Info</b></legend>
+                
+                <table>
+                    <tr>
+                        <td align="right">Employee ID:</td>
+                        <td><input type="text" id="employeeId" name="employeeId" value="9" readonly></td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right">Last Name:</td>
+                        <td><input type="text" id="lastName" name="lastName" value="Dodsworth" required></td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right">First Name:</td>
+                        <td><input type="text" id="firstName" name="firstName" value="Anne" required></td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right">Gender:</td>
+                        <td>
+                            <input type="radio" name="gender" value="male"> Male
+                            <input type="radio" name="gender" value="female"> Female
+                            <input type="radio" name="gender" value="xxx"> XXX
+                            <input type="radio" name="gender" value="zzz" checked> ZZZ
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right">Title:</td>
+                        <td><input type="text" id="title" name="title" value="Sales Representative"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right">Suffix:</td>
+                        <td><input type="text" id="suffix" name="suffix" value="Ms."></td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right">BirthDate:</td>
+                        <td><input type="date" id="birthDate" name="birthDate" value="1969-07-02"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right">HireDate:</td>
+                        <td><input type="date" id="hireDate" name="hireDate" value="1994-11-15"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right">SSN # (if applicable):</td>
+                        <td><input type="text" id="ssn" name="ssn" placeholder="Social Security Number"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right">Reports To:</td>
+                        <td>
+                            <select id="reportsTo" name="reportsTo">
+                                <option value="">Select Manager</option>
+                                <option value="buchanan" selected>Buchanan</option>
+                                <option value="fuller">Fuller</option>
+                                <option value="leverling">Leverling</option>
+                            </select>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            
+            <fieldset>
+                <legend><b>Contact Info</b></legend>
+                
+                <table>
+                    <tr>
+                        <td align="right">Email:</td>
+                        <td><input type="email" id="email" name="email" value="name@example.com"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right">Address:</td>
+                        <td><input type="text" id="address" name="address" value="7 Houndstooth Rd."></td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right">City:</td>
+                        <td><input type="text" id="city" name="city" value="London"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right">Region:</td>
+                        <td><input type="text" id="region" name="region"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right">Postal Code:</td>
+                        <td><input type="text" id="postalCode" name="postalCode" value="WG2 7LT"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right">Country:</td>
+                        <td>
+                            <select id="country" name="country">
+                                <option value="">Select Country</option>
+                                <option value="us">United States</option>
+                                <option value="uk">United Kingdom</option>
+                                <option value="ru" selected>Russian Federation</option>
+                                <option value="de">Germany</option>
+                                <option value="fr">France</option>
+                            </select>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right">US Home Phone:</td>
+                        <td><input type="tel" id="phone" name="phone" value="(234)234-2342"></td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right">Photo:</td>
+                        <td><input type="text" id="photo" name="photo" value="EmpID9.bmp"></td>
+                    </tr>
+                </table>
+            </fieldset>
+            
+            <fieldset>
+                <legend><b>Optional Info</b></legend>
+                
+                <table>
+                    <tr>
+                        <td align="right" valign="top">Notes:</td>
+                        <td>
+                            <div>
+                                <button type="button" onclick="formatText('bold')" title="Bold"><b>B</b></button>
+                                <button type="button" onclick="formatText('italic')" title="Italic"><i>I</i></button>
+                                <button type="button" onclick="formatText('underline')" title="Underline"><u>U</u></button>
+                                <button type="button" onclick="formatText('justifyLeft')" title="Align Left">≡</button>
+                                <button type="button" onclick="formatText('justifyCenter')" title="Align Center">≡</button>
+                                <button type="button" onclick="formatText('justifyRight')" title="Align Right">≡</button>
+                                <button type="button" onclick="insertList('insertUnorderedList')" title="Bullet List">•</button>
+                                <button type="button" onclick="insertList('insertOrderedList')" title="Numbered List">1.</button>
+                            </div>
+                            <textarea id="notes" name="notes" rows="5" cols="50" placeholder="Enter employee notes here...">Anne has a BA degree in English from St. Lawrence College. She is fluent in French and German ZZZ</textarea>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right">Preferred Shift:</td>
+                        <td>
+                            <input type="radio" name="preferredShift" value="regular"> Regular
+                            <input type="radio" name="preferredShift" value="graveyard" checked> Graveyard
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right">Active?</td>
+                        <td>
+                            <input type="checkbox" id="active" name="active" checked>
+                            <label for="active">Yes</label>
+                        </td>
+                    </tr>
+                    
+                    <tr>
+                        <td align="right">Are you human?</td>
+                        <td>
+                            <span style="font-family: monospace; font-size: 18px; font-weight: bold; letter-spacing: 3px; border: 1px solid #ccc; padding: 5px; background-color: #fff;">TIDKWO</span>
+                            <input type="text" placeholder="Enter CAPTCHA" name="captcha" size="15">
+                            <button type="button" onclick="refreshCaptcha()">↻</button>
+                        </td>
+                    </tr>
+                </table>
+            </fieldset>
+            
+            <div align="center">
+                <button type="submit">Submit</button>
+                <button type="button" onclick="cancelForm()">Cancel</button>
+            </div>
+        </form>
+    </div>
+
+    <script>
+        // Form validation and submission
+        document.getElementById('employeeForm').addEventListener('submit', function(e) {
+            e.preventDefault();
+            
+            // Basic validation
+            const requiredFields = ['lastName', 'firstName'];
+            let isValid = true;
+            
+            requiredFields.forEach(field => {
+                const input = document.getElementById(field);
+                if (!input.value.trim()) {
+                    alert(`Please fill in the ${field.replace(/([A-Z])/g, ' $1').toLowerCase()}`);
+                    isValid = false;
+                    return false;
+                }
+            });
+            
+            if (isValid) {
+                alert('Form submitted successfully!');
+                // Here you would typically send the data to a server
+            }
+        });
+        
+        // Format text function for rich text editor
+        function formatText(command) {
+            const textarea = document.getElementById('notes');
+            const start = textarea.selectionStart;
+            const end = textarea.selectionEnd;
+            const selectedText = textarea.value.substring(start, end);
+            
+            if (selectedText) {
+                let formattedText = selectedText;
+                switch(command) {
+                    case 'bold':
+                        formattedText = `<b>${selectedText}</b>`;
+                        break;
+                    case 'italic':
+                        formattedText = `<i>${selectedText}</i>`;
+                        break;
+                    case 'underline':
+                        formattedText = `<u>${selectedText}</u>`;
+                        break;
+                }
+                
+                textarea.value = textarea.value.substring(0, start) + formattedText + textarea.value.substring(end);
+            }
+        }
+        
+        // Insert list function
+        function insertList(type) {
+            const textarea = document.getElementById('notes');
+            const cursorPos = textarea.selectionStart;
+            const textBefore = textarea.value.substring(0, cursorPos);
+            const textAfter = textarea.value.substring(cursorPos);
+            
+            const listItem = type === 'insertUnorderedList' ? '• ' : '1. ';
+            textarea.value = textBefore + listItem + textAfter;
+            textarea.focus();
+            textarea.setSelectionRange(cursorPos + listItem.length, cursorPos + listItem.length);
+        }
+        
+        // Refresh CAPTCHA
+        function refreshCaptcha() {
+            const captchaText = document.querySelector('span[style*="monospace"]');
+            const chars = 'ABCDEFGHIJKLMNOPQRSTUVWXYZ0123456789';
+            let result = '';
+            for (let i = 0; i < 6; i++) {
+                result += chars.charAt(Math.floor(Math.random() * chars.length));
+            }
+            captchaText.textContent = result;
+        }
+        
+        // Cancel form
+        function cancelForm() {
+            if (confirm('Are you sure you want to cancel? All changes will be lost.')) {
+                document.getElementById('employeeForm').reset();
+            }
+        }
+    </script>
+</body>
+</html>
