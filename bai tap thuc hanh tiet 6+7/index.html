@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý sinh viên</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Quản lý sinh viên</h1>
+    </div>
+
+    <div class="container">
+        <div id="thongBao" class="notification"></div>
+
+        <div class="main-content">
+            <div class="form-section">
+                <div class="section-title" id="formTitle">Thêm sinh viên mới</div>
+                
+                <form id="studentForm">
+                    <div class="form-group">
+                        <label for="studentId">Mã sinh viên:</label>
+                        <input type="text" id="studentId" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="fullName">Họ và tên:</label>
+                        <input type="text" id="fullName" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="email">Email:</label>
+                        <input type="email" id="email" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="gender">Giới tính:</label>
+                        <select id="gender" required>
+                            <option value="">-- Chọn giới tính --</option>
+                            <option value="Nam">Nam</option>
+                            <option value="Nữ">Nữ</option>
+                        </select>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="birthDate">Ngày sinh:</label>
+                        <input type="date" id="birthDate" required>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="notes">Ghi chú:</label>
+                        <textarea id="notes" rows="3"></textarea>
+                    </div>
+                    
+                    <button type="button" id="btnThem" class="btn" onclick="themSinhVien()">Thêm sinh viên</button>
+                    <button type="button" id="btnCapNhat" class="btn btn-update" onclick="capNhatSinhVien()" style="display: none;">Cập nhật</button>
+                    <button type="button" id="btnHuy" class="btn btn-cancel" onclick="huyChinhSua()" style="display: none;">Hủy</button>
+                </form>
+            </div>
+
+            <div class="table-section">
+                <div class="table-title">Danh sách sinh viên</div>
+                
+                <table id="bangSinhVien">
+                    <thead>
+                        <tr>
+                            <th>STT</th>
+                            <th>Mã SV</th>
+                            <th>Họ tên</th>
+                            <th>Email</th>
+                            <th>Giới tính</th>
+                            <th>Ngày sinh</th>
+                            <th>Ghi chú</th>
+                            <th>Hành động</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr>
+                            <td>1</td>
+                            <td>SV01</td>
+                            <td>Trần Hà Trang</td>
+                            <td>tranhatrang@gmail.com</td>
+                            <td>Nữ</td>
+                            <td>15/03/2002</td>
+                            <td>Sinh viên giỏi</td>
+                            <td>
+                                <button class="btn-edit" onclick="suaDong(this)">Sửa</button>
+                                <button class="btn-delete" onclick="xoaDong(this)">Xóa</button>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>2</td>
+                            <td>SV02</td>
+                            <td>Nguyễn Văn Chung</td>
+                            <td>nguyenvanchung@gmail.com</td>
+                            <td>Nam</td>
+                            <td>22/07/2001</td>
+                            <td>Sinh viên khá</td>
+                            <td>
+                                <button class="btn-edit" onclick="suaDong(this)">Sửa</button>
+                                <button class="btn-delete" onclick="xoaDong(this)">Xóa</button>
+                            </td>
+                        </tr>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
