@@ -1,0 +1,55 @@
+// File data.js - Dữ liệu giả lập CSDL (CÂU 2)
+// Chứa tối thiểu 5 bản ghi dữ liệu minh họa
+
+const ordersData = [
+    {
+        id: "DH001",
+        customerName: "Nguyễn Văn An",
+        employeeName: "Trần Thị Bình",
+        orderDate: "2024-01-15",
+        totalAmount: 1500000,
+        status: "Hoàn thành",
+        notes: "Khách hàng VIP, ưu tiên giao hàng"
+    },
+    {
+        id: "DH002", 
+        customerName: "Lê Thị Cẩm",
+        employeeName: "Phạm Văn Dũng",
+        orderDate: "2024-01-20",
+        totalAmount: 2300000,
+        status: "Đang xử lý",
+        notes: "Giao hàng nhanh trong ngày"
+    },
+    {
+        id: "DH003",
+        customerName: "Hoàng Minh Đức",
+        employeeName: "Nguyễn Thị Hoa",
+        orderDate: "2024-01-22",
+        totalAmount: 890000,
+        status: "Đã hủy",
+        notes: "Khách hàng thay đổi ý kiến, hoàn tiền"
+    },
+    {
+        id: "DH004",
+        customerName: "Vũ Thị Lan",
+        employeeName: "Trần Văn Nam",
+        orderDate: "2024-01-25",
+        totalAmount: 3200000,
+        status: "Hoàn thành",
+        notes: "Đơn hàng lớn, nhiều sản phẩm"
+    },
+    {
+        id: "DH005",
+        customerName: "Đặng Quốc Tuấn",
+        employeeName: "Lê Thị Mai",
+        orderDate: "2024-01-28",
+        totalAmount: 750000,
+        status: "Đang xử lý",
+        notes: "Thanh toán chuyển khoản, chờ xác nhận"
+    }
+];
+
+// Export dữ liệu để sử dụng trong các file khác
+if (typeof module !== 'undefined' && module.exports) {
+    module.exports = ordersData;
+}

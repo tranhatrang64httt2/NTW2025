@@ -1,0 +1,127 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Quản lý Đơn hàng</title>
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <!-- Header -->
+    <div class="header-section">
+        <div class="container">
+            <div class="row align-items-center">
+                <div class="col-md-6">
+                    <h1 class="mb-0"><i class="fas fa-shopping-cart me-3"></i>Quản lý Đơn hàng</h1>
+                    <p class="mb-0 mt-2">Hệ thống quản lý đơn hàng và khách hàng</p>
+                </div>
+                <div class="col-md-6 text-end">
+                    <button type="button" class="btn btn-add btn-light" data-bs-toggle="modal" data-bs-target="#orderModal">
+                        <i class="fas fa-plus me-2"></i>Thêm đơn hàng mới
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Main Content -->
+    <div class="container">
+        <div class="card">
+            <div class="card-header bg-white py-3">
+                <h5 class="mb-0"><i class="fas fa-list me-2"></i>Danh sách đơn hàng</h5>
+            </div>
+            <div class="card-body p-0">
+                <div class="table-responsive">
+                    <table class="table table-hover mb-0" id="ordersTable">
+                        <thead>
+                            <tr>
+                                <th width="10%">Mã ĐH</th>
+                                <th width="20%">Khách hàng</th>
+                                <th width="20%">Nhân viên</th>
+                                <th width="15%">Ngày đặt</th>
+                                <th width="15%">Tổng tiền</th>
+                                <th width="15%">Trạng thái</th>
+                                <th width="5%">Thao tác</th>
+                            </tr>
+                        </thead>
+                        <tbody id="ordersTableBody">
+                            <!-- Dữ liệu sẽ được load bằng JavaScript -->
+                        </tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Modal Form -->
+    <div class="modal fade" id="orderModal" tabindex="-1" aria-labelledby="orderModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="orderModalLabel">
+                        <i class="fas fa-plus-circle me-2"></i>Thêm đơn hàng mới
+                    </h5>
+                    <button type="button" class="btn-close btn-close-white" data-bs-dismiss="modal" aria-label="Close"></button>
+                </div>
+                <div class="modal-body">
+                    <form id="orderForm">
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="customerName" class="form-label">Tên khách hàng <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="customerName" name="customerName" placeholder="Nhập tên khách hàng">
+                                <div class="error-message" id="customerNameError"></div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="employeeName" class="form-label">Nhân viên phụ trách <span class="text-danger">*</span></label>
+                                <input type="text" class="form-control" id="employeeName" name="employeeName" placeholder="Nhập tên nhân viên">
+                                <div class="error-message" id="employeeNameError"></div>
+                            </div>
+                        </div>
+                        <div class="row">
+                            <div class="col-md-6 mb-3">
+                                <label for="orderDate" class="form-label">Ngày đặt hàng <span class="text-danger">*</span></label>
+                                <input type="date" class="form-control" id="orderDate" name="orderDate">
+                                <div class="error-message" id="orderDateError"></div>
+                            </div>
+                            <div class="col-md-6 mb-3">
+                                <label for="totalAmount" class="form-label">Tổng tiền <span class="text-danger">*</span></label>
+                                <input type="number" class="form-control" id="totalAmount" name="totalAmount" placeholder="0" min="0">
+                                <div class="error-message" id="totalAmountError"></div>
+                            </div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="status" class="form-label">Trạng thái <span class="text-danger">*</span></label>
+                            <select class="form-select" id="status" name="status">
+                                <option value="">Chọn trạng thái</option>
+                                <option value="Đang xử lý">Đang xử lý</option>
+                                <option value="Hoàn thành">Hoàn thành</option>
+                                <option value="Đã hủy">Đã hủy</option>
+                            </select>
+                            <div class="error-message" id="statusError"></div>
+                        </div>
+                        <div class="mb-3">
+                            <label for="notes" class="form-label">Ghi chú</label>
+                            <textarea class="form-control" id="notes" name="notes" rows="3" placeholder="Nhập ghi chú (không bắt buộc)"></textarea>
+                        </div>
+                    </form>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">
+                        <i class="fas fa-times me-2"></i>Hủy
+                    </button>
+                    <button type="button" class="btn btn-add" onclick="submitForm()">
+                        <i class="fas fa-save me-2"></i>Lưu đơn hàng
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <!-- Scripts -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.3.0/js/bootstrap.bundle.min.js"></script>
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
