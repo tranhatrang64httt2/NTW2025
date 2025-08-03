@@ -1,0 +1,126 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>TLU - Employee Management</title>
+    <link rel="stylesheet" href="styles.css">
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"></script>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav class="navbar">
+        <div class="navbar-content">
+            <div class="brand">TLU</div>
+            <ul class="nav-menu">
+                <li><a href="#" class="nav-item">Home</a></li>
+                <li><a href="#" class="nav-item active">Employees</a></li>
+            </ul>
+            <div class="search-section">
+                <input type="text" class="search-input" placeholder="Search" id="searchInput">
+                <button class="search-btn" id="searchBtn">Search</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Main Content -->
+    <div class="container">
+        <!-- Page Header -->
+        <div class="page-header">
+            <h1 class="page-title">Manage Employees</h1>
+            <div class="button-group">
+                <button class="btn btn-danger" id="deleteSelectedBtn">
+                    <i class="fas fa-trash"></i>
+                    Delete
+                </button>
+                <button class="btn btn-success" id="openModalBtn">
+                    <i class="fas fa-plus"></i>
+                    Add New Employee
+                </button>
+            </div>
+        </div>
+
+        <!-- Employee Table -->
+        <div class="table-container">
+            <table class="data-table">
+                <thead>
+                    <tr>
+                        <th width="50"><input type="checkbox" class="custom-checkbox" id="selectAllCheckbox"></th>
+                        <th>Name</th>
+                        <th>Email</th>
+                        <th>Address</th>
+                        <th>Phone</th>
+                        <th width="100">Actions</th>
+                    </tr>
+                </thead>
+                <tbody id="employeeList">
+                    <!-- Employee data will be inserted here -->
+                </tbody>
+            </table>
+        </div>
+
+        <!-- Pagination -->
+        <div class="pagination-wrapper">
+            <div class="pagination-info">
+                Showing <span id="currentCount">0</span> out of <span id="totalEmployees">0</span> entries
+            </div>
+            <div class="pagination-controls" id="paginationControls">
+                <button class="page-number" id="prevBtn">Previous</button>
+                <button class="page-number">1</button>
+                <button class="page-number">2</button>
+                <button class="page-number current">3</button>
+                <button class="page-number">4</button>
+                <button class="page-number">5</button>
+                <button class="page-number" id="nextBtn">Next</button>
+            </div>
+        </div>
+    </div>
+
+    <!-- Employee Modal -->
+    <div class="modal-overlay" id="employeeModal">
+        <div class="modal-dialog">
+            <div class="modal-header">
+                <h3 class="modal-title" id="modalTitle">Add New Employee</h3>
+                <button class="modal-close" id="closeModalBtn">
+                    <i class="fas fa-times"></i>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form id="employeeForm">
+                    <div class="form-row">
+                        <label class="form-label" for="fullName">Full Name *</label>
+                        <input type="text" class="form-input" id="fullName" name="fullName" required>
+                        <div class="validation-message" id="nameValidation">Please enter your full name</div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <label class="form-label" for="emailAddress">Email Address *</label>
+                        <input type="email" class="form-input" id="emailAddress" name="emailAddress" required>
+                        <div class="validation-message" id="emailValidation">Please enter a valid email address</div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <label class="form-label" for="homeAddress">Address *</label>
+                        <textarea class="form-input form-textarea" id="homeAddress" name="homeAddress" required></textarea>
+                        <div class="validation-message" id="addressValidation">Please enter your address</div>
+                    </div>
+                    
+                    <div class="form-row">
+                        <label class="form-label" for="phoneNumber">Phone Number *</label>
+                        <input type="tel" class="form-input" id="phoneNumber" name="phoneNumber" required maxlength="10">
+                        <div class="validation-message" id="phoneValidation">Phone number must be exactly 10 digits and start with 0</div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button class="btn btn-secondary" id="cancelModalBtn">Cancel</button>
+                <button class="btn btn-primary" id="saveEmployeeBtn">Save</button>
+            </div>
+        </div>
+    </div>
+
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
