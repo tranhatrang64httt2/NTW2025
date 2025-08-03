@@ -1,0 +1,129 @@
+<!DOCTYPE html>
+<html lang="vi">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Trường Đại học Thủy lợi - Quản lý Giao dịch</title>
+    
+    <!-- External Libraries -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.6.0/jquery.min.js"></script>
+    
+    <!-- Local Files -->
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="header">
+        <h1>Trường Đại học Thủy lợi</h1>
+        <div class="header-right">
+            <span>Trang chủ</span>
+            <span>Quản lý cửa hàng</span>
+            <div class="header-search">
+                <input type="text" placeholder="Nhập nội dung tìm kiếm" class="header-search-input">
+                <button class="header-search-btn">🔍</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="container">
+        <div class="alert alert-success" id="successAlert"></div>
+        <div class="alert alert-error" id="errorAlert"></div>
+
+        <div class="toolbar">
+            <button class="btn btn-primary" id="addBtn">
+                <span>+</span> THÊM
+            </button>
+            <button class="btn btn-success" id="exportBtn">
+                <span>📤</span> XUẤT RA FILE
+            </button>
+            <button class="btn btn-danger" id="deleteSelectedBtn">
+                DELETE SELECTED RECORDS
+            </button>
+            
+            <div class="search-box">
+                <span>Kết quả:</span>
+                <select id="pageSize">
+                    <option value="5">5</option>
+                    <option value="10" selected>10</option>
+                    <option value="20">20</option>
+                </select>
+                <input type="text" id="searchInput" placeholder="Tìm kiếm giao dịch...">
+            </div>
+        </div>
+
+        <div class="table-container">
+            <table id="transactionTable">
+                <thead>
+                    <tr>
+                        <th>
+                            <input type="checkbox" class="checkbox select-all" id="selectAll">
+                            Hành động
+                        </th>
+                        <th data-sort="id">ID ↕</th>
+                        <th data-sort="customer">Khách hàng ↕</th>
+                        <th data-sort="employee">Nhân viên ↕</th>
+                        <th data-sort="amount">Số tiền ↕</th>
+                        <th data-sort="date">Ngày mua ↕</th>
+                    </tr>
+                </thead>
+                <tbody id="transactionTableBody">
+                    <!-- Data will be loaded here -->
+                </tbody>
+            </table>
+        </div>
+
+        <div class="pagination">
+            <div>Trang <span id="currentPageInfo">1</span></div>
+            <div class="pagination-buttons" id="paginationButtons">
+                <!-- Pagination buttons will be generated here -->
+            </div>
+            <div>Kết quả 1 trong <span id="totalResults">20</span> trang</div>
+        </div>
+    </div>
+
+    <!-- Modal -->
+    <div id="transactionModal" class="modal">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h2 id="modalTitle">Thêm giao dịch</h2>
+                <span class="close">&times;</span>
+            </div>
+            <div class="modal-body">
+                <form id="transactionForm">
+                    <div class="form-group">
+                        <label for="customerName">Khách hàng</label>
+                        <input type="text" id="customerName" name="customerName" required>
+                        <div class="error-message" id="customerError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="employeeName">Nhân viên</label>
+                        <input type="text" id="employeeName" name="employeeName" required>
+                        <div class="error-message" id="employeeError"></div>
+                    </div>
+                    
+                    <div class="form-group">
+                        <label for="amount">Số tiền</label>
+                        <input type="number" id="amount" name="amount" required min="0" step="1000">
+                        <div class="error-message" id="amountError"></div>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-cancel" id="cancelBtn">Hủy</button>
+                <button type="button" class="btn btn-success" id="saveBtn">Thêm</button>
+            </div>
+        </div>
+    </div>
+
+    <div class="footer">
+        <h3>TRƯỜNG ĐẠI HỌC THỦY LỢI</h3>
+        <p>Địa chỉ: 175 Tây Sơn, Đống Đa, Hà Nội</p>
+        <p>Điện thoại: (024) 38522201 - Fax: (024) 35633551</p>
+        <p>Email: phonghcth@tlu.edu.vn</p>
+    </div>
+
+    <!-- Load data and scripts -->
+    <script src="data.js"></script>
+    <script src="script.js"></script>
+</body>
+</html>
